@@ -25,7 +25,20 @@ from copy import copy, deepcopy
 # Replace the pass statement with your implementation.
 
 class ParentClass:
-    pass
+    world = "One Piece"
+
+    def __init__(self, name, bounty):
+        self.name = name
+        self.bounty = bounty
+    def increase_bounty(self, amount):
+        if amount < 0:
+            raise ValueError("Bounty increase cannot be negative")
+
+        self.bounty += amount
+        return f"{self.name}'s new bounty is {self.bounty:,} berries"
+
+    def display_info(self):
+        return f"Pirate: {self.name}, Bounty: {self.bounty:,} berries"
 
 
 # TODO 2:
@@ -41,9 +54,18 @@ class ParentClass:
 # Replace the pass statement with your implementation.
 
 class ChildClass(ParentClass):
-    pass
+    category = "Devil Fruit User"
 
+    def __init__(self, name, bounty, devil_fruit, crew):
+        super().__init__(name, bounty)
+        self.devil_fruit = devil_fruit
+        self.crew = crew
 
+    def use_power(self):
+        return f"{self.name} uses the power of the {self.devil_fruit}!"
+
+    def display_info(self):
+        return f"{super().display_info()}, Devil Fruit: {self.devil_fruit}, Crew: {self.crew}"
 # TODO 3:
 # Create a function that demonstrates class namespaces and instance namespaces.
 #
@@ -56,9 +78,17 @@ class ChildClass(ParentClass):
 # - Display information about the class namespace.
 
 def demonstrate_namespaces():
-    print("\n=== Namespace Demonstration ===")
-    print("TODO: Implement namespace demonstration")
+    luffy = ChildClass("Luffy", 3000000000, "Gomu Gomu no Mi", "Straw Hat Pirates")
+    doflamingo = ChildClass("Doflamingo", 340000000, "Ito Ito no Mi", "Donquixote Pirates")
 
+    print("Class variable:", ChildClass.category)
+    print("Access through object:", luffy.category)
+
+    luffy.gear = "Gear 5"
+
+    print("Luffy's namespace:", luffy.__dict__)
+    print("Doflamingo's namespace:", doflamingo.__dict__)
+    print("Class namespace:", list(ChildClass.__dict__.keys()))
 
 # TODO 4:
 # Create a function that demonstrates shallow copying and deep copying.
@@ -73,7 +103,22 @@ def demonstrate_namespaces():
 
 def demonstrate_copying():
     print("\n=== Copy Demonstration ===")
-    print("TODO: Implement shallow copy and deep copy demonstration")
+
+    luffy = ChildClass("Luffy", 3000000000, "Gomu Gomu no Mi", "Straw Hat Pirates")
+
+    luffy.inventory = ["Sword", "Treasure Map", "Meat"]
+
+    shallow_luffy = copy(luffy)
+    deep_luffy = deepcopy(luffy)
+
+    # A shallow copy shares references to nested mutable objects.
+    # A deep copy creates independent copies of nested mutable objects.
+
+    luffy.inventory.append("Devil Fruit")
+
+    print("Original inventory:", luffy.inventory)
+    print("Shallow copy inventory:", shallow_luffy.inventory)
+    print("Deep copy inventory:", deep_luffy.inventory)
 
 
 # TODO 5:
@@ -89,13 +134,23 @@ def demonstrate_copying():
 def main():
     print("=== Unit 1 OOP Assignment ===")
 
-    print("\nTODO: Create and test your parent object")
+    print("\n=== Parent Object ===")
+    zoro = ParentClass("Zoro", 1111000000)
+    print(zoro.display_info())
+    print(zoro.increase_bounty(500000000))
 
-    print("\nTODO: Create and test your child object")
+    print("\n=== Child Object ===")
+    luffy = ChildClass(
+        "Luffy",
+        3000000000,
+        "Gomu Gomu no Mi",
+        "Straw Hat Pirates"
+    )
+
+    print(luffy.display_info())
+    print(luffy.use_power())
 
     demonstrate_namespaces()
     demonstrate_copying()
-
-
 if __name__ == "__main__":
     main()

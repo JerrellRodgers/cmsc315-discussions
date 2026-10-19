@@ -20,6 +20,23 @@ Complete all TODO sections in the source code:
 2. Create a child class using inheritance.
 3. Demonstrate class and instance namespaces.
 4. Demonstrate shallow and deep copying.
+## Implementation Summary
+
+For this assignment, I created a One Piece-themed Python program that demonstrated object-oriented programming concepts.
+
+I created a parent class that stored a pirate's name and bounty. I then created a child class that inherited those attributes and added information about Devil Fruits and pirate crews.
+
+I demonstrated namespaces by creating objects for Luffy and Doflamingo and using `__dict__` to examine their attributes.
+
+I demonstrated shallow and deep copying by creating copies of Luffy's inventory. After modifying the original inventory, I observed that the shallow copy reflected the changes while the deep copy remained unchanged.
+
+For my student-created extension, I added a method that increased a pirate's bounty and rejected negative values using error handling.
+
+I tested the program using characters from One Piece to demonstrate inheritance, method overriding, and object behavior.
+
+## Testing
+
+I ran the Python program in IntelliJ IDEA and tested the bounty increase functionality. The program successfully demonstrated class inheritance, namespaces, and the differences between shallow and deep copying.
 5. Create and test objects in `main()`.
 6. Add a student-created extension.
 

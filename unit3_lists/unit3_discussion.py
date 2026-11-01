@@ -22,7 +22,11 @@ def insert_at(lst, index, value):
     - Use comments to explain how insertion performance may vary depending on
       where the insertion occurs.
     """
-    pass
+    # Insert the character at the requested position.
+    # Existing characters shift right to make space.
+    # Inserting near the beginning takes more work
+    # than inserting at the end.
+    lst.insert(index, value)
 
 
 def delete_at(lst, index):
@@ -36,7 +40,13 @@ def delete_at(lst, index):
     - Return None if the index is invalid.
     - Add comments explaining why index validation and safe deletion are important.
     """
-    pass
+    # Check that the index exists before removing anyone.
+    # This prevents an IndexError.
+    if 0 <= index < len(lst):
+        return lst.pop(index)
+
+    # Return None if the position is invalid.
+    return None
 
 
 def search_value(lst, value):
@@ -49,7 +59,13 @@ def search_value(lst, value):
     - Return -1 if the value is not found.
     - Add comments explaining why this is a linear search and why it scans sequentially.
     """
-    pass
+    # Linear search checks each character in order.
+    for index, character in enumerate(lst):
+        if character == value:
+            return index
+
+    # Return -1 if the character was not found.
+    return -1
 
 
 def main():
@@ -70,8 +86,21 @@ def main():
     # 5. Use comments to explain each step in the implementation.
 
     print("\n=== INSERTION TESTS ===")
-    print("TODO: Create a list and demonstrate insertions.")
 
+crew = ["Zoro", "Nami", "Sanji"]
+print("Original crew:", crew)
+
+# Add Luffy at the beginning.
+insert_at(crew, 0, "Luffy")
+print("After adding Luffy:", crew)
+
+# Add Usopp in the middle.
+insert_at(crew, 2, "Usopp")
+print("After adding Usopp:", crew)
+
+# Add Chopper at the end.
+insert_at(crew, len(crew), "Chopper")
+print("After adding Chopper:", crew)
     # ===============================
     # TODO (Student): DELETION TESTS
     # ===============================
@@ -85,8 +114,22 @@ def main():
     # 3. Display the updated list after each deletion.
     # 4. Use comments to clearly explain what is happening in the output.
 
-    print("\n=== DELETION TESTS ===")
-    print("TODO: Demonstrate deletions from multiple positions.")
+print("\n=== DELETION TESTS ===")
+
+# Remove the first crew member.
+removed = delete_at(crew, 0)
+print("Removed from beginning:", removed)
+print("Crew:", crew)
+
+# Remove a character from the middle.
+removed = delete_at(crew, len(crew) // 2)
+print("Removed from middle:", removed)
+print("Crew:", crew)
+
+# Remove the last crew member.
+removed = delete_at(crew, len(crew) - 1)
+print("Removed from end:", removed)
+print("Crew:", crew)
 
     # ===============================
     # TODO (Student): SEARCH TESTS
@@ -98,8 +141,12 @@ def main():
     # 3. Display the search results with clear explanations.
     # 4. Use comments to explain each step.
 
-    print("\n=== SEARCH TESTS ===")
-    print("TODO: Demonstrate searching for values.")
+print("\n=== SEARCH TESTS ===")
+# Search for Zoro, who is in our crew.
+print("Zoro found at index:", search_value(crew, "Zoro"))
+
+# Shanks is not a Straw Hat crew member.
+print("Shanks found at index:", search_value(crew, "Shanks"))
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -114,8 +161,17 @@ def main():
     # - Delete from an empty list
     # - Use comments to explain each edge case.
 
-    print("\n=== EDGE CASES ===")
-    print("TODO: Demonstrate at least two edge cases.")
+print("\n=== EDGE CASES ===")
+# Edge case 1: Invalid deletion index.
+print("Invalid deletion:", delete_at(crew, 100))
+
+# Edge case 2: Delete from an empty list.
+empty_crew = []
+print("Delete from empty crew:", delete_at(empty_crew, 0))
+
+# Edge case 3: Insert into an empty list.
+insert_at(empty_crew, 0, "Brook")
+print("New crew:", empty_crew)
 
 
 

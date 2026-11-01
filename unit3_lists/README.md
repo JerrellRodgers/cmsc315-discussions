@@ -21,6 +21,12 @@ This assignment examines insertion, deletion, and searching in Python lists.
 
 ## Discussion Board Reflection
 
+For this assignment, I created a One Piece-themed Python program that managed a crew roster using a list. I implemented three functions that allowed me to insert, delete, and search for characters.
+
+I tested inserting Luffy at the beginning, Usopp in the middle, and Chopper at the end of the list. I also removed characters from different positions and used a linear search to find Zoro.
+
+I tested invalid indexes and empty lists to ensure the program handled unexpected operations without crashing. I learned that inserting and deleting elements near the beginning of a Python list required shifting other elements, while searching involved checking each element until the requested character was found.
+
 After completing the programming assignment, add this reflection to your initial discussion post in LEO.
 
 Your reflection should be approximately 150–200 words and address the following questions:
